@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwpc7cmlut1td"]
+
+[ext_resource type="PackedScene" uid="uid://cub61p36wkv10" path="res://Character.tscn" id="1_7n0md"]
+[ext_resource type="Script" path="res://World.gd" id="1_34ye6"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_34ye6")
+
+[node name="Character" parent="." instance=ExtResource("1_7n0md")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_7n0md")]
+position = Vector2(317, 150)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("1_7n0md")]
+position = Vector2(-332, 162)
