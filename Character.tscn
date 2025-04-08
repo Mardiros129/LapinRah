@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cub61p36wkv10"]
+[gd_scene load_steps=8 format=3 uid="uid://cub61p36wkv10"]
 
 [ext_resource type="Script" path="res://Character.gd" id="1_qpg1y"]
 [ext_resource type="Texture2D" uid="uid://boptj7avk4pco" path="res://assets/green circle.png" id="2_immr0"]
 [ext_resource type="Texture2D" uid="uid://bm7u8ts5y3lwh" path="res://assets/bright green circle.png" id="3_lko3d"]
 [ext_resource type="Texture2D" uid="uid://boe7y6pru2ghg" path="res://assets/red circle.png" id="4_j34fd"]
 [ext_resource type="Texture2D" uid="uid://m3yayjsytnme" path="res://assets/rabbit.png" id="5_5p0np"]
+[ext_resource type="Script" path="res://Stats.gd" id="6_h71mj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqfiu"]
 radius = 72.0156
@@ -35,6 +36,17 @@ texture = ExtResource("4_j34fd")
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.262908, 0.262908)
 texture = ExtResource("5_5p0np")
+
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource("6_h71mj")
+
+[node name="Label" type="Label" parent="Stats"]
+offset_left = -68.0
+offset_top = -105.0
+offset_right = 69.0
+offset_bottom = -82.0
+text = "asdf"
+horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
