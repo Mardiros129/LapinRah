@@ -15,7 +15,7 @@ func _unhandled_input(event):
 
 		### TO DO: move as a group so they don't all cluster together
 		if selection.size() > 1:
-			var sum = Vector2i(0.0, 0.0)
+			var sum = Vector2(0, 0)
 			for n in selection:
 				sum += n.position
 			var average_position = sum / selection.size()
