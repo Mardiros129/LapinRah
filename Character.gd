@@ -30,12 +30,14 @@ func _ready():
 
 
 func _process(delta):
-	# Checks if the unit is close to the destination, not exactly on it. Prevents jittering.
-	if (destination.x - 1 < global_position.x and destination.x + 1 > global_position.x) and (destination.y - 1 < global_position.y and destination.y + 1 > global_position.y):
-		state = STAND
-	else:
-		velocity = (destination - global_position).normalized() * speed * delta
-		move_and_slide()
+	if state == MOVE or state == ATTACK_MOVE:
+		# Checks if the unit is close to the destination, not exactly on it. Prevents jittering.
+		if (destination.x - 1 < global_position.x and destination.x + 1 > global_position.x) 
+				and (destination.y - 1 < global_position.y and destination.y + 1 > global_position.y):
+			state = STAND
+		else:
+			velocity = (destination - global_position).normalized() * speed * delta
+			move_and_slide()
 
 
 func _unhandled_input(event):
