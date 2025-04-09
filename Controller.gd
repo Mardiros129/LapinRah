@@ -7,6 +7,7 @@ func _ready():
 	for n in get_children():
 		n.unit_selected.connect(_on_unit_selected)
 		n.unit_deselected.connect(_on_unit_deselected)
+		n.selection_cleared.connect(_on_selection_cleared)
 
 
 func _unhandled_input(event):
@@ -40,3 +41,9 @@ func _on_unit_selected(unit):
 
 func _on_unit_deselected(unit):
 	selection.erase(unit)
+
+func _on_selection_cleared():
+	if selection.size() > 0:
+		for n in selection:
+			n.deselect()
+		selection.clear()

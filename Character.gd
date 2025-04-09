@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal unit_selected
 signal unit_deselected
+signal selection_cleared
 
 @onready var hovered = false
 @onready var is_selected = false
@@ -13,6 +14,8 @@ signal unit_deselected
 @onready var hover_circle = $HoverCircle
 @onready var select_circle = $SelectCircle
 @onready var attack_circle = $AttackCircle
+
+@onready var anim_player = $Icon/AnimationPlayer
 
 @onready var state
 
@@ -40,11 +43,18 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	if Input.is_action_just_pressed("ClickSelect") and hovered:
+	if Input.is_action_just_pressed("ShiftClickSelect") and hovered:
 		if !is_selected:
 			select()
 		else:
 			deselect()
+	
+	elif Input.is_action_just_pressed("ClickSelect") and hovered:
+		if !is_selected:
+			selection_cleared.emit()
+			select()
+		else:
+			anim_player.play("spin")
 
 
 func move(target):
