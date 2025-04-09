@@ -11,20 +11,22 @@ func _ready():
 
 func _unhandled_input(event):
 	if Input.is_action_pressed("ClickMove"):
-		var target = get_global_mouse_position()
-		
+		var mouse_target = get_global_mouse_position()
+
 		### TO DO: move as a group so they don't all cluster together
 		if selection.size() > 1:
-			var temp_sum = Vector2(0, 0)
+			var sum = Vector2i(0.0, 0.0)
 			for n in selection:
-				temp_sum += n.position
-			var average_position = temp_sum / selection.size()
-			var offset = target - average_position
-			target += offset
-		### END TO DO
+				sum += n.position
+			var average_position = sum / selection.size()
+			var offset = mouse_target - average_position
 		
-		for x in selection:
-			x.move(target)
+			for x in selection:
+				var new_target = x.position + offset
+				x.move(new_target)
+		
+		elif selection.size() == 1:
+			selection[0].move(mouse_target)
 
 
 	if Input.is_action_just_pressed("AttackMove"):
